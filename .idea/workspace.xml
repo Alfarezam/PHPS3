@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c0fb88d7-2168-46b8-8c76-b768af66d80a" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2nFMhQorP4uH7nil6zHLj7WLHBQ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/REZA/Downloads/Compressed/TabNine-1.166.0.zip&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\REZA\OneDrive\Documents\PBO\views" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\REZA\OneDrive\Documents\PBO\nodes" />
+      <recent name="C:\Users\REZA\OneDrive\Documents\PBO\model" />
+      <recent name="C:\Users\REZA\OneDrive\Documents\PBO\views" />
+      <recent name="C:\Users\REZA\OneDrive\Documents\PBO\Model" />
+      <recent name="C:\Users\REZA\OneDrive\Documents\PBO" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-PS-243.21565.202" />
+        <option value="bundled-php-predefined-a98d8de5180a-5fbe0c30323e-com.jetbrains.php.sharedIndexes-PS-243.21565.202" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c0fb88d7-2168-46b8-8c76-b768af66d80a" name="Changes" comment="" />
+      <created>1728564489639</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1728564489639</updated>
+      <workItem from="1728564490660" duration="58000" />
+      <workItem from="1728564580963" duration="587000" />
+      <workItem from="1728565201476" duration="3109000" />
+      <workItem from="1728607615465" duration="1745000" />
+      <workItem from="1728615209480" duration="1844000" />
+      <workItem from="1729084660760" duration="309000" />
+      <workItem from="1729086740069" duration="2640000" />
+      <workItem from="1729152151359" duration="4186000" />
+      <workItem from="1729163905433" duration="2709000" />
+      <workItem from="1729179083205" duration="802000" />
+      <workItem from="1729252679981" duration="1087000" />
+      <workItem from="1729510683402" duration="810000" />
+      <workItem from="1730116008144" duration="3216000" />
+      <workItem from="1730293327610" duration="331000" />
+      <workItem from="1730293683841" duration="385000" />
+      <workItem from="1730294134327" duration="228000" />
+      <workItem from="1730298673366" duration="2353000" />
+      <workItem from="1730301733209" duration="3802000" />
+      <workItem from="1730377688750" duration="1253000" />
+      <workItem from="1730730381236" duration="387000" />
+      <workItem from="1731944146859" duration="225000" />
+      <workItem from="1732187681354" duration="9764000" />
+      <workItem from="1732617673808" duration="1113000" />
+      <workItem from="1732618811622" duration="122000" />
+      <workItem from="1732618946761" duration="1029000" />
+      <workItem from="1732619996942" duration="5537000" />
+      <workItem from="1732627701711" duration="222000" />
+      <workItem from="1732628164639" duration="8951000" />
+      <workItem from="1732637203493" duration="2081000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

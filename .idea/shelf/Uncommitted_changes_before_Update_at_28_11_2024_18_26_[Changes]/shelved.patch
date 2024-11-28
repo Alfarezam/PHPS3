@@ -1,0 +1,146 @@
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1732640148740)
++++ b/.idea/vcs.xml	(date 1732640148740)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"c0fb88d7-2168-46b8-8c76-b768af66d80a\" name=\"Changes\" comment=\"\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ComposerSettings\">\r\n    <execution />\r\n  </component>\r\n  <component name=\"PhpDebugGeneral\" listening_started=\"true\" />\r\n  <component name=\"PhpWorkspaceProjectConfiguration\" interpreter_name=\"PHP\" />\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 3\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2nFMhQorP4uH7nil6zHLj7WLHBQ\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/REZA/Downloads/Compressed/TabNine-1.166.0.zip&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\REZA\\OneDrive\\Documents\\PBO\\views\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\REZA\\OneDrive\\Documents\\PBO\\nodes\" />\r\n      <recent name=\"C:\\Users\\REZA\\OneDrive\\Documents\\PBO\\model\" />\r\n      <recent name=\"C:\\Users\\REZA\\OneDrive\\Documents\\PBO\\views\" />\r\n      <recent name=\"C:\\Users\\REZA\\OneDrive\\Documents\\PBO\\Model\" />\r\n      <recent name=\"C:\\Users\\REZA\\OneDrive\\Documents\\PBO\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-PS-243.21565.202\" />\r\n        <option value=\"bundled-php-predefined-a98d8de5180a-5fbe0c30323e-com.jetbrains.php.sharedIndexes-PS-243.21565.202\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"c0fb88d7-2168-46b8-8c76-b768af66d80a\" name=\"Changes\" comment=\"\" />\r\n      <created>1728564489639</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1728564489639</updated>\r\n      <workItem from=\"1728564490660\" duration=\"58000\" />\r\n      <workItem from=\"1728564580963\" duration=\"587000\" />\r\n      <workItem from=\"1728565201476\" duration=\"3109000\" />\r\n      <workItem from=\"1728607615465\" duration=\"1745000\" />\r\n      <workItem from=\"1728615209480\" duration=\"1844000\" />\r\n      <workItem from=\"1729084660760\" duration=\"309000\" />\r\n      <workItem from=\"1729086740069\" duration=\"2640000\" />\r\n      <workItem from=\"1729152151359\" duration=\"4186000\" />\r\n      <workItem from=\"1729163905433\" duration=\"2709000\" />\r\n      <workItem from=\"1729179083205\" duration=\"802000\" />\r\n      <workItem from=\"1729252679981\" duration=\"1087000\" />\r\n      <workItem from=\"1729510683402\" duration=\"810000\" />\r\n      <workItem from=\"1730116008144\" duration=\"3216000\" />\r\n      <workItem from=\"1730293327610\" duration=\"331000\" />\r\n      <workItem from=\"1730293683841\" duration=\"385000\" />\r\n      <workItem from=\"1730294134327\" duration=\"228000\" />\r\n      <workItem from=\"1730298673366\" duration=\"2353000\" />\r\n      <workItem from=\"1730301733209\" duration=\"3802000\" />\r\n      <workItem from=\"1730377688750\" duration=\"1253000\" />\r\n      <workItem from=\"1730730381236\" duration=\"387000\" />\r\n      <workItem from=\"1731944146859\" duration=\"225000\" />\r\n      <workItem from=\"1732187681354\" duration=\"9764000\" />\r\n      <workItem from=\"1732617673808\" duration=\"1113000\" />\r\n      <workItem from=\"1732618811622\" duration=\"122000\" />\r\n      <workItem from=\"1732618946761\" duration=\"1029000\" />\r\n      <workItem from=\"1732619996942\" duration=\"5537000\" />\r\n      <workItem from=\"1732627701711\" duration=\"222000\" />\r\n      <workItem from=\"1732628164639\" duration=\"8951000\" />\r\n      <workItem from=\"1732637203493\" duration=\"2081000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision f91fd97c67996cab0e028cdfbf08a206fd50289c)
++++ b/.idea/workspace.xml	(date 1732792973791)
+@@ -4,7 +4,18 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="c0fb88d7-2168-46b8-8c76-b768af66d80a" name="Changes" comment="" />
++    <list default="true" id="c0fb88d7-2168-46b8-8c76-b768af66d80a" name="Changes" comment="">
++      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/views/user_edit.php" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/models/model_barang.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/model_barang.php" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/models/model_user.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/model_user.php" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/views/barang_edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/barang_edit.php" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/views/user_list.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/user_list.php" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -13,6 +24,24 @@
+   <component name="ComposerSettings">
+     <execution />
+   </component>
++  <component name="Git.Settings">
++    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++  </component>
++  <component name="GitHubPullRequestSearchHistory">{
++  &quot;lastFilter&quot;: {
++    &quot;state&quot;: &quot;OPEN&quot;,
++    &quot;assignee&quot;: &quot;Alfarezam&quot;
++  }
++}</component>
++  <component name="GithubDefaultAccount">
++    <option name="defaultAccountId" value="94ab0eda-3e86-4a54-afe8-e18187435a71" />
++  </component>
++  <component name="GithubPullRequestsUISettings">{
++  &quot;selectedUrlAndAccountId&quot;: {
++    &quot;url&quot;: &quot;https://github.com/Alfarezam/PHPS3.git&quot;,
++    &quot;accountId&quot;: &quot;94ab0eda-3e86-4a54-afe8-e18187435a71&quot;
++  }
++}</component>
+   <component name="PhpDebugGeneral" listening_started="true" />
+   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
+   <component name="ProblemsViewState">
+@@ -22,20 +51,28 @@
+   &quot;associatedIndex&quot;: 3
+ }</component>
+   <component name="ProjectId" id="2nFMhQorP4uH7nil6zHLj7WLHBQ" />
++  <component name="ProjectLevelVcsManager">
++    <OptionsSetting value="false" id="Update" />
++    <ConfirmationsSetting value="2" id="Add" />
++  </component>
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+   <component name="PropertiesComponent">{
+   &quot;keyToString&quot;: {
++    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+     &quot;last_opened_file_path&quot;: &quot;C:/Users/REZA/Downloads/Compressed/TabNine-1.166.0.zip&quot;,
+     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+ }</component>
+@@ -95,7 +132,11 @@
+       <workItem from="1732619996942" duration="5537000" />
+       <workItem from="1732627701711" duration="222000" />
+       <workItem from="1732628164639" duration="8951000" />
+-      <workItem from="1732637203493" duration="2081000" />
++      <workItem from="1732637203493" duration="2942000" />
++      <workItem from="1732688354255" duration="5046000" />
++      <workItem from="1732791822201" duration="19000" />
++      <workItem from="1732791850218" duration="718000" />
++      <workItem from="1732792580542" duration="391000" />
+     </task>
+     <servers />
+   </component>
+Index: .idea/php.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/php.xml b/.idea/php.xml
+new file mode 100644
+--- /dev/null	(date 1732688530963)
++++ b/.idea/php.xml	(date 1732688530963)
+@@ -0,0 +1,20 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="MessDetectorOptionsConfiguration">
++    <option name="transferred" value="true" />
++  </component>
++  <component name="PHPCSFixerOptionsConfiguration">
++    <option name="transferred" value="true" />
++  </component>
++  <component name="PHPCodeSnifferOptionsConfiguration">
++    <option name="highlightLevel" value="WARNING" />
++    <option name="transferred" value="true" />
++  </component>
++  <component name="PhpProjectSharedConfiguration" php_language_level="8.4" />
++  <component name="PhpStanOptionsConfiguration">
++    <option name="transferred" value="true" />
++  </component>
++  <component name="PsalmOptionsConfiguration">
++    <option name="transferred" value="true" />
++  </component>
++</project>
+\ No newline at end of file

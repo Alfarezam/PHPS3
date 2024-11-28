@@ -1,0 +1,468 @@
+Index: index.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\n\r\nrequire_once \"models/model_role.php\";\r\nrequire_once \"models/model_user.php\";\r\nrequire_once \"models/model_barang.php\";\r\nsession_start();\r\n// session_destroy();\r\n\r\n$obj_Role = new modelRole();\r\n$obj_barang = new modelBarang();\r\n$obj_user = new modelUser();\r\n\r\n\r\nif (isset($_GET['modul'])) {\r\n    $model = $_GET['modul'];\r\n} else {\r\n    $model = \"dashboard\";\r\n}\r\n\r\nswitch ($model) {\r\n\r\n    case \"dashboard\":\r\n        include 'views/kosong.php';\r\n        break;\r\n    case 'role':\r\n        $fitur = isset($_GET['fitur']) ? $_GET['fitur'] : null;\r\n        $id = isset($_GET['id']) ? $_GET['id'] : null;\r\n        switch ($fitur) {\r\n            case 'add':\r\n                if ($_SERVER['REQUEST_METHOD'] == 'POST') {\r\n                    $name = $_POST['role_name'];\r\n                    $desc = $_POST['role_description'];\r\n                    $status = $_POST['role_status'];\r\n                    $obj_Role->addRole($name, $desc, $status);\r\n                    header('location: index.php?modul=role');\r\n                }\r\n                include 'views/role_input.php';\r\n                break;\r\n            case 'delete':\r\n                $obj_Role->deleteRole($id);\r\n                header('location: index.php?modul=role');\r\n                break;\r\n            case 'update':\r\n                $role = $obj_Role->getRoleById($id);\r\n                include 'views/role_edit.php';\r\n                break;\r\n            case 'edit':\r\n                if ($_SERVER['REQUEST_METHOD'] == 'POST') {\r\n                    $name = $_POST['role_name'];\r\n                    $desc = $_POST['role_description'];\r\n                    $status = $_POST['role_status'];\r\n                    $obj_Role->updateRole($id, $name, $desc, $status);\r\n                    header('location: index.php?modul=role');\r\n                } else {\r\n                    include 'views/role_list.php';\r\n                }\r\n                break;\r\n            default:\r\n                $roles = $obj_Role->getAllRoles();\r\n                include 'views/role_list.php';\r\n        }\r\n        break;\r\n    case 'user':\r\n        $fitur = isset($_GET['fitur']) ? $_GET['fitur'] : null;\r\n        switch ($fitur) {\r\n            case 'add':\r\n                if($_SERVER['REQUEST_METHOD'] == 'POST'){\r\n                    $uname = $_POST['user_name'];\r\n                    $pass = $_POST['password'];\r\n                    $role_name = $_POST['role_name'];\r\n                    $role = $obj_Role->getRoleByName($role_name);\r\n                    $obj_user->addUser($uname, $pass, $role);\r\n                    header('location: index.php?modul=user');\r\n                }else{\r\n                    $roles = $obj_Role->getAllRoles();\r\n                    include 'views/user_input.php';\r\n                }\r\n                break;\r\n\r\n            case 'update':\r\n                $id = $_GET['iduser'];\r\n                $roles = $obj_Role->getAllRoles();\r\n                $user = $obj_user->getUserById($id);\r\n                include 'views/user_edit.php';\r\n                break;\r\n\r\n            case 'edit':\r\n                if($_SERVER['REQUEST_METHOD'] == 'POST'){\r\n                    $id = $_GET['iduser'];\r\n                    $uname = $_POST['user_name'];\r\n                    $pass = $_POST['password'];\r\n                    $role_name = $_POST['role_name'];\r\n                    $role = $obj_Role->getRoleByName($role_name);\r\n                    $obj_user->updateUser($id, $uname, $pass, $role);\r\n                    header('location: index.php?modul=user');\r\n                }else{\r\n                    $roles = $obj_Role->getAllRoles();\r\n                    $users = $obj_user->getUserById($id);\r\n                    include 'views/user_list.php';\r\n                }\r\n                break;\r\n\r\n            case 'delete':\r\n                $id = $_GET['iduser'];\r\n                $user = $obj_user->getUserById($id);\r\n                $obj_user->deleteUser($user);\r\n                header('location: index.php?modul=user');\r\n                break;\r\n            default:\r\n                $users = $obj_user->getUsers();\r\n                // print_r($users);\r\n                include \"views/user_list.php\";\r\n        }\r\n        break;\r\n\r\n    case 'barang':\r\n\r\n        $fitur = isset($_GET['fitur']) ? $_GET['fitur'] : null;\r\n        $id = isset($_GET['id']) ? $_GET['id'] : null;\r\n\r\n        switch ($fitur) {\r\n            case 'add':\r\n                if ($_SERVER['REQUEST_METHOD'] == 'POST') {\r\n                    $barangName = $_POST['barang_name'];\r\n                    $hargaBarang = $_POST['harga_barang'];\r\n                    $banyakBarang = $_POST['banyak_barang'];\r\n                    $obj_barang->addBarang($barangName, $hargaBarang, $banyakBarang);\r\n                    header('location: index.php?modul=barang');\r\n                } else {\r\n                    include 'views/barang_input.php';\r\n                }\r\n                break;\r\n            case 'delete':\r\n                $obj_barang->deleteBarang($id);\r\n                header('location: index.php?modul=barang');\r\n                break;\r\n            case 'update':\r\n                $barang = $obj_barang->getBarangById($id);\r\n                include 'views/barang_edit.php';\r\n                break;\r\n            case 'edit':\r\n                if ($_SERVER['REQUEST_METHOD'] == 'POST') {\r\n                    $barangName = $_POST['barang_name'];\r\n                    $hargaBarang = $_POST['harga_barang'];\r\n                    $banyakBarang = $_POST['banyak_barang'];\r\n                    $obj_barang->updateBarang($id, $barangName, $hargaBarang, $banyakBarang);\r\n                    header('location: index.php?modul=barang');\r\n                } else {\r\n                    include 'views/barang_list.php';\r\n                }\r\n                break;\r\n            default:\r\n                $barangs = $obj_barang->getAllBarangs();\r\n                include 'views/barang_list.php';\r\n                break;\r\n        }\r\n        break;\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/index.php b/index.php
+--- a/index.php	(revision 10629da204683ee0419bce0ee1de2af44f04544d)
++++ b/index.php	(date 1732793982856)
+@@ -1,16 +1,11 @@
+ <?php
+-
+ require_once "models/model_role.php";
+ require_once "models/model_user.php";
+-require_once "models/model_barang.php";
+ session_start();
+ // session_destroy();
+ 
+-$obj_Role = new modelRole();
+-$obj_barang = new modelBarang();
+ $obj_user = new modelUser();
+ 
+-
+ if (isset($_GET['modul'])) {
+     $model = $_GET['modul'];
+ } else {
+@@ -18,141 +13,45 @@
+ }
+ 
+ switch ($model) {
+-
+     case "dashboard":
+         include 'views/kosong.php';
+         break;
+-    case 'role':
+         $fitur = isset($_GET['fitur']) ? $_GET['fitur'] : null;
+         $id = isset($_GET['id']) ? $_GET['id'] : null;
+         switch ($fitur) {
+             case 'add':
+                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+-                    $name = $_POST['role_name'];
+-                    $desc = $_POST['role_description'];
+-                    $status = $_POST['role_status'];
+-                    $obj_Role->addRole($name, $desc, $status);
+-                    header('location: index.php?modul=role');
+-                }
+-                include 'views/role_input.php';
+-                break;
+-            case 'delete':
+-                $obj_Role->deleteRole($id);
+-                header('location: index.php?modul=role');
+-                break;
+-            case 'update':
+-                $role = $obj_Role->getRoleById($id);
+-                include 'views/role_edit.php';
+-                break;
+-            case 'edit':
+-                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+-                    $name = $_POST['role_name'];
+-                    $desc = $_POST['role_description'];
+-                    $status = $_POST['role_status'];
+-                    $obj_Role->updateRole($id, $name, $desc, $status);
+-                    header('location: index.php?modul=role');
+-                } else {
+-                    include 'views/role_list.php';
+-                }
+-                break;
+-            default:
+-                $roles = $obj_Role->getAllRoles();
+-                include 'views/role_list.php';
+-        }
+-        break;
+-    case 'user':
+-        $fitur = isset($_GET['fitur']) ? $_GET['fitur'] : null;
+-        switch ($fitur) {
+-            case 'add':
+-                if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                     $uname = $_POST['user_name'];
+                     $pass = $_POST['password'];
+                     $role_name = $_POST['role_name'];
+-                    $role = $obj_Role->getRoleByName($role_name);
+                     $obj_user->addUser($uname, $pass, $role);
+                     header('location: index.php?modul=user');
+                 }else{
+-                    $roles = $obj_Role->getAllRoles();
+                     include 'views/user_input.php';
+                 }
+                 break;
+-
+-            case 'update':
+-                $id = $_GET['iduser'];
+-                $roles = $obj_Role->getAllRoles();
+-                $user = $obj_user->getUserById($id);
+-                include 'views/user_edit.php';
+-                break;
+-
+-            case 'edit':
+-                if($_SERVER['REQUEST_METHOD'] == 'POST'){
+-                    $id = $_GET['iduser'];
+-                    $uname = $_POST['user_name'];
+-                    $pass = $_POST['password'];
+-                    $role_name = $_POST['role_name'];
+-                    $role = $obj_Role->getRoleByName($role_name);
+-                    $obj_user->updateUser($id, $uname, $pass, $role);
+-                    header('location: index.php?modul=user');
+-                }else{
+-                    $roles = $obj_Role->getAllRoles();
+-                    $users = $obj_user->getUserById($id);
+-                    include 'views/user_list.php';
+-                }
+-                break;
+-
+-            case 'delete':
+-                $id = $_GET['iduser'];
+-                $user = $obj_user->getUserById($id);
+-                $obj_user->deleteUser($user);
+-                header('location: index.php?modul=user');
+-                break;
+             default:
+                 $users = $obj_user->getUsers();
+-                // print_r($users);
+-                include "views/user_list.php";
+         }
+         break;
+-
+-    case 'barang':
+-
+         $fitur = isset($_GET['fitur']) ? $_GET['fitur'] : null;
+         $id = isset($_GET['id']) ? $_GET['id'] : null;
+ 
+         switch ($fitur) {
+             case 'add':
+                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+-                    $barangName = $_POST['barang_name'];
+-                    $hargaBarang = $_POST['harga_barang'];
+-                    $banyakBarang = $_POST['banyak_barang'];
+-                    $obj_barang->addBarang($barangName, $hargaBarang, $banyakBarang);
+-                    header('location: index.php?modul=barang');
+                 } else {
+-                    include 'views/barang_input.php';
+                 }
+                 break;
+             case 'delete':
+-                $obj_barang->deleteBarang($id);
+-                header('location: index.php?modul=barang');
+                 break;
+             case 'update':
+-                $barang = $obj_barang->getBarangById($id);
+-                include 'views/barang_edit.php';
+                 break;
+             case 'edit':
+                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+-                    $barangName = $_POST['barang_name'];
+-                    $hargaBarang = $_POST['harga_barang'];
+-                    $banyakBarang = $_POST['banyak_barang'];
+-                    $obj_barang->updateBarang($id, $barangName, $hargaBarang, $banyakBarang);
+-                    header('location: index.php?modul=barang');
+                 } else {
+-                    include 'views/barang_list.php';
+                 }
+                 break;
+             default:
+-                $barangs = $obj_barang->getAllBarangs();
+-                include 'views/barang_list.php';
+-                break;
+-        }
+         break;
+ }
+\ No newline at end of file
+Index: views/user_list.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <title>List User</title>\r\n    <script src=\"https://cdn.tailwindcss.com\"></script>\r\n</head>\r\n<body class=\"bg-gray-100 font-sans leading-normal tracking-normal\">\r\n\r\n<!-- Navbar -->\r\n<?php include 'includes/navbar.php'; ?>\r\n\r\n<!-- Main container -->\r\n<div class=\"flex\">\r\n    <!-- Sidebar -->\r\n    <?php include 'includes/sidebar.php'; ?>\r\n\r\n    <!-- Main Content -->\r\n    <div class=\"flex-1 p-8\">\r\n        <!-- Your main content goes here -->\r\n        <div class=\"container mx-auto\">\r\n            <!-- Button to Insert New Role -->\r\n            <div class=\"mb-4\">\r\n                <button class=\"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded\">\r\n                    <a href=\"index.php?modul=user&fitur=add\">Insert New User</a>\r\n                </button>\r\n            </div>\r\n\r\n            <!-- Roles Table -->\r\n            <div class=\"bg-white shadow-md rounded my-6\">\r\n                <table class=\"min-w-full bg-white grid-cols-1\">\r\n                    <thead class=\"bg-gray-800 text-white\">\r\n\r\n                    <tr>\r\n                        <th class=\"w-1/12 py-3 px-4 uppercase font-semibold text-sm\">User ID</th>\r\n                        <th class=\"w-1/4 py-3 px-4 uppercase font-semibold text-sm\">Username</th>\r\n                        <th class=\"w-1/3 py-3 px-4 uppercase font-semibold text-sm\">Password</th>\r\n                        <th class=\"w-1/6 py-3 px-4 uppercase font-semibold text-sm\">Role Name</th>\r\n                        <th class=\"w-1/6 py-3 px-4 uppercase font-semibold text-sm\">Action</th>\r\n                        <!-- <th class=\"w-1/6 py-3 px-4 uppercase font-semibold text-sm\">Actions</th> -->\r\n                    </tr>\r\n\r\n                    </thead>\r\n                    <tbody class=\"text-gray-700\">\r\n                    <!-- Static Data Rows -->\r\n                    <?php foreach($users as $user){?>\r\n                        <tr class=\"text-center\">\r\n                            <td class=\"py-3 px-4 text-blue-600\"><?php echo htmlspecialchars($user->user_id);?></td>\r\n                            <td class=\"w-1/4 py-3 px-4\"><?php echo htmlspecialchars($user->username);?></td>\r\n                            <td class=\"w-1/3 py-3 px-4\"><?php echo htmlspecialchars($user->password);?></td>\r\n                            <td class=\"w-1/6 py-3 px-4\"><?php echo htmlspecialchars($user->role->role_name);?></td>\r\n                            <td class=\"w-1/6 py-3 px-4\">\r\n                                <button class=\"bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded mr-2\">\r\n                                    <a href=\"index.php?modul=user&fitur=update&iduser=<?php echo htmlspecialchars($user->user_id); ?>\">Update</a>\r\n                                </button>\r\n                                <button class=\"bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded mr-2\">\r\n                                    <a href=\"index.php?modul=user&fitur=delete&iduser=<?php echo htmlspecialchars($user->user_id); ?>\">Delete</a>\r\n                                </button>\r\n                            </td>\r\n                        </tr>\r\n                    <?php } ?>\r\n                    <!-- More rows can be added statically here -->\r\n                    </tbody>\r\n                </table>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n</body>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/views/user_list.php b/views/user_list.php
+--- a/views/user_list.php	(revision 10629da204683ee0419bce0ee1de2af44f04544d)
++++ b/views/user_list.php	(date 1732794007191)
+@@ -52,10 +52,8 @@
+                             <td class="w-1/6 py-3 px-4"><?php echo htmlspecialchars($user->role->role_name);?></td>
+                             <td class="w-1/6 py-3 px-4">
+                                 <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded mr-2">
+-                                    <a href="index.php?modul=user&fitur=update&iduser=<?php echo htmlspecialchars($user->user_id); ?>">Update</a>
+                                 </button>
+                                 <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded mr-2">
+-                                    <a href="index.php?modul=user&fitur=delete&iduser=<?php echo htmlspecialchars($user->user_id); ?>">Delete</a>
+                                 </button>
+                             </td>
+                         </tr>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"c0fb88d7-2168-46b8-8c76-b768af66d80a\" name=\"Changes\" comment=\"update\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ComposerSettings\">\r\n    <execution />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"PhpDebugGeneral\" listening_started=\"true\" />\r\n  <component name=\"PhpWorkspaceProjectConfiguration\" interpreter_name=\"PHP\" />\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 3\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2nFMhQorP4uH7nil6zHLj7WLHBQ\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <OptionsSetting value=\"false\" id=\"Update\" />\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"git-widget-placeholder\": \"main\",\r\n    \"last_opened_file_path\": \"C:/Users/REZA/Downloads/Compressed/TabNine-1.166.0.zip\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"settings.editor.selected.configurable\": \"org.jetbrains.plugins.github.ui.GithubSettingsConfigurable\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\REZA\\OneDrive\\Documents\\PBO\\views\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\REZA\\OneDrive\\Documents\\PBO\\nodes\" />\r\n      <recent name=\"C:\\Users\\REZA\\OneDrive\\Documents\\PBO\\model\" />\r\n      <recent name=\"C:\\Users\\REZA\\OneDrive\\Documents\\PBO\\views\" />\r\n      <recent name=\"C:\\Users\\REZA\\OneDrive\\Documents\\PBO\\Model\" />\r\n      <recent name=\"C:\\Users\\REZA\\OneDrive\\Documents\\PBO\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-PS-243.21565.202\" />\r\n        <option value=\"bundled-php-predefined-a98d8de5180a-5fbe0c30323e-com.jetbrains.php.sharedIndexes-PS-243.21565.202\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"c0fb88d7-2168-46b8-8c76-b768af66d80a\" name=\"Changes\" comment=\"\" />\r\n      <created>1728564489639</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1728564489639</updated>\r\n      <workItem from=\"1728564490660\" duration=\"58000\" />\r\n      <workItem from=\"1728564580963\" duration=\"587000\" />\r\n      <workItem from=\"1728565201476\" duration=\"3109000\" />\r\n      <workItem from=\"1728607615465\" duration=\"1745000\" />\r\n      <workItem from=\"1728615209480\" duration=\"1844000\" />\r\n      <workItem from=\"1729084660760\" duration=\"309000\" />\r\n      <workItem from=\"1729086740069\" duration=\"2640000\" />\r\n      <workItem from=\"1729152151359\" duration=\"4186000\" />\r\n      <workItem from=\"1729163905433\" duration=\"2709000\" />\r\n      <workItem from=\"1729179083205\" duration=\"802000\" />\r\n      <workItem from=\"1729252679981\" duration=\"1087000\" />\r\n      <workItem from=\"1729510683402\" duration=\"810000\" />\r\n      <workItem from=\"1730116008144\" duration=\"3216000\" />\r\n      <workItem from=\"1730293327610\" duration=\"331000\" />\r\n      <workItem from=\"1730293683841\" duration=\"385000\" />\r\n      <workItem from=\"1730294134327\" duration=\"228000\" />\r\n      <workItem from=\"1730298673366\" duration=\"2353000\" />\r\n      <workItem from=\"1730301733209\" duration=\"3802000\" />\r\n      <workItem from=\"1730377688750\" duration=\"1253000\" />\r\n      <workItem from=\"1730730381236\" duration=\"387000\" />\r\n      <workItem from=\"1731944146859\" duration=\"225000\" />\r\n      <workItem from=\"1732187681354\" duration=\"9764000\" />\r\n      <workItem from=\"1732617673808\" duration=\"1113000\" />\r\n      <workItem from=\"1732618811622\" duration=\"122000\" />\r\n      <workItem from=\"1732618946761\" duration=\"1029000\" />\r\n      <workItem from=\"1732619996942\" duration=\"5537000\" />\r\n      <workItem from=\"1732627701711\" duration=\"222000\" />\r\n      <workItem from=\"1732628164639\" duration=\"8951000\" />\r\n      <workItem from=\"1732637203493\" duration=\"2081000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"update\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"update\" />\r\n    <option name=\"GROUP_MULTIFILE_MERGE_BY_DIRECTORY\" value=\"true\" />\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 10629da204683ee0419bce0ee1de2af44f04544d)
++++ b/.idea/workspace.xml	(date 1732793954775)
+@@ -4,7 +4,6 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="c0fb88d7-2168-46b8-8c76-b768af66d80a" name="Changes" comment="update" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -12,9 +11,6 @@
+   </component>
+   <component name="ComposerSettings">
+     <execution />
+-  </component>
+-  <component name="Git.Settings">
+-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+   <component name="PhpDebugGeneral" listening_started="true" />
+   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
+@@ -25,28 +21,11 @@
+   &quot;associatedIndex&quot;: 3
+ }</component>
+   <component name="ProjectId" id="2nFMhQorP4uH7nil6zHLj7WLHBQ" />
+-  <component name="ProjectLevelVcsManager">
+-    <OptionsSetting value="false" id="Update" />
+-    <ConfirmationsSetting value="2" id="Add" />
+-  </component>
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "git-widget-placeholder": "main",
+-    "last_opened_file_path": "C:/Users/REZA/Downloads/Compressed/TabNine-1.166.0.zip",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+-    "vue.rearranger.settings.migration": "true"
+   }
+-}]]></component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="C:\Users\REZA\OneDrive\Documents\PBO\views" />
+@@ -109,22 +88,6 @@
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="3" />
+-  </component>
+-  <component name="Vcs.Log.Tabs.Properties">
+-    <option name="TAB_STATES">
+-      <map>
+-        <entry key="MAIN">
+-          <value>
+-            <State />
+-          </value>
+-        </entry>
+-      </map>
+-    </option>
+-  </component>
+-  <component name="VcsManagerConfiguration">
+-    <MESSAGE value="update" />
+-    <option name="LAST_COMMIT_MESSAGE" value="update" />
+-    <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
+   </component>
+   <component name="XSLT-Support.FileAssociations.UIState">
+     <expand />
+Index: views/barang_edit.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <title>Update Barang</title>\r\n    <script src=\"https://cdn.tailwindcss.com\"></script>\r\n</head>\r\n<body class=\"bg-gray-100 font-sans leading-normal tracking-normal\">\r\n\r\n<!-- Navbar -->\r\n<?php include 'includes/navbar.php'; ?>\r\n\r\n<!-- Main container -->\r\n<div class=\"flex\">\r\n    <!-- Sidebar -->\r\n    <?php include 'includes/sidebar.php'; ?>\r\n\r\n    <!-- Main Content -->\r\n    <div class=\"flex-1 p-8\">\r\n        <!-- Formulir Edit Barang -->\r\n        <div class=\"max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg\">\r\n            <h2 class=\"text-2xl font-bold mb-6 text-gray-800\">Update Barang</h2>\r\n            <form action=\"index.php?modul=barang&fitur=edit&id=<?php echo htmlspecialchars($barang->idBarang); ?>\" method=\"POST\">\r\n                <!-- Nama Barang -->\r\n                <div class=\"mb-4\">\r\n                    <label for=\"barang_name\" class=\"block text-gray-700 text-sm font-bold mb-2\">Nama Barang:</label>\r\n                    <input type=\"text\" id=\"barang_name\" name=\"barang_name\" class=\"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline\"\r\n                           value=\"<?php echo htmlspecialchars($barang->nameBarang); ?>\" required>\r\n                </div>\r\n\r\n                <!-- Harga Barang -->\r\n                <div class=\"mb-4\">\r\n                    <label for=\"harga_barang\" class=\"block text-gray-700 text-sm font-bold mb-2\">Harga Barang:</label>\r\n                    <!-- <input type=\"number\" id=\"harga_barang\" name=\"harga_barang\" class=\"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline\" value=\"<?php echo htmlspecialchars($barang->hargaBarang); ?>\" required> -->\r\n                    <textarea id=\"harga_barang\" name=\"harga_barang\" class=\"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline\" placeholder=\"Masukkan Harga Barang\" rows=\"3\" required\r\n                    ><?php echo htmlspecialchars($barang->hargaBarang); ?></textarea>\r\n                </div>\r\n\r\n                <!-- Quantity Barang -->\r\n                <div class=\"mb-4\">\r\n                    <label for=\"jumlah_barang\" class=\"block text-gray-700 text-sm font-bold mb-2\">Quantity:</label>\r\n                    <input type=\"number\" id=\"jumlah_barang\" name=\"jumlah_barang\" class=\"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline\"\r\n                           value=\"<?php echo htmlspecialchars($barang->jumlahBarang); ?>\" required>\r\n                </div>\r\n\r\n\r\n                <!-- Submit Button -->\r\n                <div class=\"flex items-center justify-between\">\r\n                    <button type=\"submit\" class=\"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline\">\r\n                        Update\r\n                    </button>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n</body>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/views/barang_edit.php b/views/barang_edit.php
+--- a/views/barang_edit.php	(revision 10629da204683ee0419bce0ee1de2af44f04544d)
++++ b/views/barang_edit.php	(date 1732793971818)
+@@ -3,52 +3,32 @@
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-    <title>Update Barang</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+ </head>
+ <body class="bg-gray-100 font-sans leading-normal tracking-normal">
+ 
+ <!-- Navbar -->
+-<?php include 'includes/navbar.php'; ?>
+ 
+ <!-- Main container -->
+ <div class="flex">
+     <!-- Sidebar -->
+-    <?php include 'includes/sidebar.php'; ?>
+ 
+     <!-- Main Content -->
+     <div class="flex-1 p-8">
+-        <!-- Formulir Edit Barang -->
+         <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg">
+             <h2 class="text-2xl font-bold mb-6 text-gray-800">Update Barang</h2>
+-            <form action="index.php?modul=barang&fitur=edit&id=<?php echo htmlspecialchars($barang->idBarang); ?>" method="POST">
+-                <!-- Nama Barang -->
+                 <div class="mb-4">
+-                    <label for="barang_name" class="block text-gray-700 text-sm font-bold mb-2">Nama Barang:</label>
+-                    <input type="text" id="barang_name" name="barang_name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+-                           value="<?php echo htmlspecialchars($barang->nameBarang); ?>" required>
+                 </div>
+ 
+-                <!-- Harga Barang -->
+                 <div class="mb-4">
+-                    <label for="harga_barang" class="block text-gray-700 text-sm font-bold mb-2">Harga Barang:</label>
+-                    <!-- <input type="number" id="harga_barang" name="harga_barang" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="<?php echo htmlspecialchars($barang->hargaBarang); ?>" required> -->
+-                    <textarea id="harga_barang" name="harga_barang" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan Harga Barang" rows="3" required
+-                    ><?php echo htmlspecialchars($barang->hargaBarang); ?></textarea>
+                 </div>
+ 
+-                <!-- Quantity Barang -->
+                 <div class="mb-4">
+-                    <label for="jumlah_barang" class="block text-gray-700 text-sm font-bold mb-2">Quantity:</label>
+-                    <input type="number" id="jumlah_barang" name="jumlah_barang" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+-                           value="<?php echo htmlspecialchars($barang->jumlahBarang); ?>" required>
+                 </div>
+ 
+-
+                 <!-- Submit Button -->
+                 <div class="flex items-center justify-between">
+                     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+-                        Update
+                     </button>
+                 </div>
+             </form>
+Index: models/model_barang.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\nrequire_once 'nodes/node_barang.php';\r\nclass modelBarang {\r\n    private $barangs = [];\r\n    private $nextId = 1;\r\n    private $objBarang;\r\n\r\n\r\n    public function __construct() {\r\n        if (isset($_SESSION['barangs'])) {\r\n            $this->barangs = unserialize($_SESSION['barangs']);\r\n            $this->nextId = count($this->barangs)+1;\r\n        } else {\r\n            $this->initiliazeDefaultBarang();\r\n        }\r\n    }\r\n\r\n    public function initiliazeDefaultBarang() {\r\n        $this->addBarang(\"Tas\",100000, 1);\r\n        $this->addBarang(\"Sepatu\",10000, 2);\r\n        $this->addBarang(\"Setrika\",15000, 2);\r\n    }\r\n\r\n    public function addBarang($barangName, $hargaBarang, $jumlahBarang) {\r\n//        echo $this->nextId;\r\n        $this->objBarang = new Barang($this->nextId++, $barangName, $hargaBarang, $jumlahBarang);\r\n        $this->barangs[] = $this->objBarang;\r\n        $this->saveToSession();\r\n    }\r\n\r\n    private function saveToSession() {\r\n        $_SESSION['barangs'] = serialize($this->barangs);\r\n    }\r\n\r\n    public function getAllBarangs() {\r\n        return $this->barangs;\r\n    }\r\n\r\n    public function getListBarang() {\r\n        $listBarang = [];\r\n        foreach ($this->barangs as $barang) {\r\n            // $listBarang[] = $this->barangs->namaBarang; // 1 problem di $this->barangs->namaBarang\r\n            $listBarang[] = $barang->nameBarang;\r\n        }\r\n        return $listBarang;\r\n    }\r\n\r\n    public function getBarangById($id) {\r\n        foreach ($this->barangs as $barang) {\r\n            if ($barang->idBarang == $id){\r\n                return $barang;\r\n            }\r\n        }\r\n        return null;\r\n    }\r\n\r\n    public function updateBarang($id, $barangName, $hargaBarang, $jumlahBarang) {\r\n        foreach ($this->barangs as $barang) {\r\n            if ($barang->idBarang == $id) {\r\n                $barang->nameBarang = $barangName;\r\n                $barang->hargaBarang = $hargaBarang;\r\n                $barang->jumlahBarang = $jumlahBarang;\r\n                $this->saveToSession();\r\n                return true;\r\n            }\r\n        }\r\n        return false;\r\n    }\r\n\r\n    public function deleteBarang($id) {\r\n        foreach ($this->barangs as $key => $barang) {\r\n            if ($barang->idBarang == $id){\r\n                unset($this->barangs[$key]);\r\n                $this->saveToSession();\r\n                return true;\r\n            }\r\n        }\r\n        return false;\r\n    }\r\n}\r\n?>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/models/model_barang.php b/models/model_barang.php
+--- a/models/model_barang.php	(revision 10629da204683ee0419bce0ee1de2af44f04544d)
++++ b/models/model_barang.php	(date 1732793991258)
+@@ -16,9 +16,7 @@
+     }
+ 
+     public function initiliazeDefaultBarang() {
+-        $this->addBarang("Tas",100000, 1);
+         $this->addBarang("Sepatu",10000, 2);
+-        $this->addBarang("Setrika",15000, 2);
+     }
+ 
+     public function addBarang($barangName, $hargaBarang, $jumlahBarang) {
+Index: models/model_user.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\nrequire_once 'nodes/node_user.php';\r\nrequire_once 'nodes/node_role.php';\r\n\r\nclass modelUser {\r\n    private $users = [];\r\n    private $nextId = 1;\r\n\r\n    public function __construct() {\r\n        if (isset($_SESSION['users'])) {\r\n            $this->users = unserialize($_SESSION['users']);\r\n            $this->nextId = count($this->users) + 1;\r\n        } else {\r\n            $this->initializeDefaultUsers();\r\n        }\r\n    }\r\n\r\n    public function addUser($uname, $pass, $role) {\r\n        $user = new \\User($this->nextId++, $uname, $pass, $role);\r\n        $this->users[] = $user;\r\n        $this->saveToSession();\r\n    }\r\n\r\n    private function saveToSession() {\r\n        $_SESSION['users'] = serialize($this->users);\r\n    }\r\n\r\n    public function getUsers() {\r\n        return $this->users;\r\n    }\r\n\r\n    private function initializeDefaultUsers()\r\n    {\r\n        $obj_role1 = new \\Role(1, \"Admin\", \"Administration\", 1);\r\n        $obj_role2 = new \\Role(1, \"Kasir\", \"Kasir\", 1);\r\n        //data dummy\r\n        $this->addUser('alfarezaym@gmail.com', '1223', $obj_role1);\r\n        $this->addUser('alex@gmail.com', '123', $obj_role1);\r\n        $this->addUser('oriel@gmail.com', '111', $obj_role2);\r\n    }\r\n\r\n    public function getUserById($user_id) {\r\n        foreach($this->users as $user) {\r\n            if ($user->user_id == $user_id) {\r\n                return $user;\r\n            }\r\n        }\r\n        return null;\r\n    }\r\n\r\n    public function deleteUser($user){\r\n        if($user != null){\r\n            $key = array_search($user, $this->users);\r\n            unset($this->users[$key]);\r\n            $this->users = array_values($this->users);\r\n            $this->saveToSession();\r\n            return true;\r\n        }\r\n        return false;\r\n    }\r\n\r\n    public function updateUser($user_id, $uname, $pass, $role,) {\r\n        $userlokal = $this->getUserById($user_id);\r\n        if($userlokal != null){\r\n            $userlokal->username = $uname;\r\n            $userlokal->password = $pass;\r\n            $userlokal->role = $role;\r\n            $this->saveToSession();\r\n            return true;\r\n        }\r\n        return false;\r\n    }\r\n}\r\n\r\n// session_start();\r\n\r\n// Testing Input dan Output\r\n// $obj_user = new modelUser();\r\n// $users = $obj_user->getUsers();\r\n// // print_r($users);\r\n// foreach ($users as $user) {\r\n//     echo \"Username: \".$user->username.\"<br/>\";\r\n//     echo \"Password: \".$user->password.\"<br/>\";\r\n//     echo \"Role Name: \".$user->role->role_name.\"<br/>\";\r\n// }\r\n\r\n// echo \"-----------------------------\".\"<br/>\";\r\n// echo \"Testing Search User by ID\".\"<br/>\";\r\n// $userlokal = $obj_user->getUserById(1);\r\n// print_r($userlokal);\r\n\r\n// echo \"Testing Delete User by ID\".\"<br/>\";\r\n// $userlokal = $obj_user->getUserById(3);\r\n// $obj_user->deleteUser($userlokal);\r\n// foreach ($users as $user) {\r\n//     echo \"Username: \".$user->username.\"<br/>\";\r\n//     echo \"Password: \".$user->password.\"<br/>\";\r\n//     echo \"Role Name: \".$user->role->role_name.\"<br/>\";\r\n// }\r\n\r\n// echo \"Testing Delete User by ID\".\"<br/>\";\r\n// $userlokal = $obj_user->getUserById(2);\r\n// $obj_role1 = new \\Role(1, \"Admin\", \"Administration\", 1);\r\n// $obj_user->updateUser(2, \"dicky@gmail.com\", \"123\", $obj_role1);\r\n// foreach ($users as $user) {\r\n//     echo \"Username: \".$user->username.\"<br/>\";\r\n//     echo \"Password: \".$user->password.\"<br/>\";\r\n//     echo \"Role Name: \".$user->role->role_name.\"<br/>\";\r\n// }\r\n\r\n?>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/models/model_user.php b/models/model_user.php
+--- a/models/model_user.php	(revision 10629da204683ee0419bce0ee1de2af44f04544d)
++++ b/models/model_user.php	(date 1732793999189)
+@@ -1,12 +1,8 @@
+ <?php
+-require_once 'nodes/node_user.php';
+-require_once 'nodes/node_role.php';
+ 
+-class modelUser {
+     private $users = [];
+     private $nextId = 1;
+ 
+-    public function __construct() {
+         if (isset($_SESSION['users'])) {
+             $this->users = unserialize($_SESSION['users']);
+             $this->nextId = count($this->users) + 1;
+@@ -15,17 +11,14 @@
+         }
+     }
+ 
+-    public function addUser($uname, $pass, $role) {
+         $user = new \User($this->nextId++, $uname, $pass, $role);
+         $this->users[] = $user;
+         $this->saveToSession();
+     }
+ 
+-    private function saveToSession() {
+         $_SESSION['users'] = serialize($this->users);
+     }
+ 
+-    public function getUsers() {
+         return $this->users;
+     }
+ 
+@@ -39,7 +32,6 @@
+         $this->addUser('oriel@gmail.com', '111', $obj_role2);
+     }
+ 
+-    public function getUserById($user_id) {
+         foreach($this->users as $user) {
+             if ($user->user_id == $user_id) {
+                 return $user;
+@@ -48,22 +40,15 @@
+         return null;
+     }
+ 
+-    public function deleteUser($user){
+         if($user != null){
+             $key = array_search($user, $this->users);
+             unset($this->users[$key]);
+-            $this->users = array_values($this->users);
+             $this->saveToSession();
+             return true;
+         }
+         return false;
+     }
+-
+-    public function updateUser($user_id, $uname, $pass, $role,) {
+-        $userlokal = $this->getUserById($user_id);
+         if($userlokal != null){
+-            $userlokal->username = $uname;
+-            $userlokal->password = $pass;
+             $userlokal->role = $role;
+             $this->saveToSession();
+             return true;
+@@ -71,10 +56,7 @@
+         return false;
+     }
+ }
+-
+ // session_start();
+-
+-// Testing Input dan Output
+ // $obj_user = new modelUser();
+ // $users = $obj_user->getUsers();
+ // // print_r($users);
+@@ -83,29 +65,10 @@
+ //     echo "Password: ".$user->password."<br/>";
+ //     echo "Role Name: ".$user->role->role_name."<br/>";
+ // }
+-
+ // echo "-----------------------------"."<br/>";
+-// echo "Testing Search User by ID"."<br/>";
+-// $userlokal = $obj_user->getUserById(1);
+-// print_r($userlokal);
+-
+-// echo "Testing Delete User by ID"."<br/>";
+-// $userlokal = $obj_user->getUserById(3);
+-// $obj_user->deleteUser($userlokal);
+-// foreach ($users as $user) {
+-//     echo "Username: ".$user->username."<br/>";
+-//     echo "Password: ".$user->password."<br/>";
+-//     echo "Role Name: ".$user->role->role_name."<br/>";
+-// }
+-
+-// echo "Testing Delete User by ID"."<br/>";
+-// $userlokal = $obj_user->getUserById(2);
+-// $obj_role1 = new \Role(1, "Admin", "Administration", 1);
+-// $obj_user->updateUser(2, "dicky@gmail.com", "123", $obj_role1);
+ // foreach ($users as $user) {
+ //     echo "Username: ".$user->username."<br/>";
+ //     echo "Password: ".$user->password."<br/>";
+ //     echo "Role Name: ".$user->role->role_name."<br/>";
+ // }
+-
+ ?>
+\ No newline at end of file

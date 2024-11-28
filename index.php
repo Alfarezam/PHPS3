@@ -95,7 +95,7 @@ switch ($model) {
                     header('location: index.php?modul=user');
                 }else{
                     $roles = $obj_Role->getAllRoles();
-                    $users = $obj_user->getUserById($id);
+                    $users = $obj_user->getUserById($userid);
                     include 'views/user_list.php';
                 }
                 break;

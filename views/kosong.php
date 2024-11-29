@@ -21,7 +21,7 @@
     <!-- Main Content -->
     <div class="flex-1 p-8">
         <!-- Your main content goes here -->
-
+TEMPAT KOSONGAN
     </div>
 </div>
 

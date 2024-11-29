@@ -2,7 +2,7 @@
     <div class="container mx-auto flex justify-between items-center">
         <div class="text-white font-bold text-xl">
             <div class="header">
-                <a href="/index.php" class="logo">My Application</a>
+                <a href="/index.php" class="logo">W SPEED</a>
             </div>
 
         </div>
